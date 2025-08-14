@@ -37,13 +37,13 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4">
       {/* Title */}
-      <h1 className="text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-400 drop-shadow-lg">
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-pink-300 drop-shadow-lg">
         Tic Tac Toe
       </h1>
 
       {/* Create Game Button */}
       <button
-        className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-xl shadow-md text-lg font-semibold transition-transform transform hover:scale-105"
+        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md text-lg font-semibold transition-transform transform hover:scale-105 cursor-pointer"
         onClick={handleCreate}
       >
         🎮 Create New Game
@@ -65,7 +65,7 @@ export default function Home() {
           placeholder="Enter code"
         />
         <button
-          className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-semibold transition-transform transform hover:scale-105"
+          className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-semibold transition-transform transform hover:scale-105 cursor-pointer"
           onClick={handleJoin}
         >
           Join
