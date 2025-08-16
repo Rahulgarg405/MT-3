@@ -20,20 +20,30 @@ export default function LandingPage() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="z-10 text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-pink-300 drop-shadow-lg"
+        className="z-10 text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-200 drop-shadow-lg"
       >
         Tic Tac Toe
       </motion.h1>
 
-      {/* Tagline */}
+      {/* Main Tagline */}
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className="z-10 text-xl font-mono text-gray-300 mb-12 text-center max-w-xl"
+        className="z-10 text-xl font-mono text-gray-300 mb-3 text-center max-w-xl"
       >
-        Play the classic game with a modern twist. Challenge a friend or take on
-        the system’s AI.
+        Play the timeless game your way, with friends or against a flawless
+        opponent that never slips up.
+      </motion.p>
+
+      {/* Sub Tagline */}
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        className="z-10 text-lg  text-blue-200 italic text-center max-w-lg mb-5"
+      >
+        Built for fun. Designed for challenge.
       </motion.p>
 
       {/* Buttons */}
@@ -66,7 +76,6 @@ export default function LandingPage() {
         Instructions to Play?
       </button>
 
-      {/* Footer */}
       {/* Footer */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -135,15 +144,26 @@ export default function LandingPage() {
               </div>
               <ul className="list-disc pl-5 space-y-2 text-gray-300">
                 <li>
-                  Click <b>Play with Friend</b> to create a room and share the
-                  code with your friend.
-                </li>
-                <li>If your friend created a room, enter the code to join.</li>
-                <li>
-                  Click <b>Play with System</b> to start a match against the AI.
+                  Choose <b>Play with Friend</b> to create a private room and
+                  share the code with your friend.
                 </li>
                 <li>
-                  Take turns placing X or O — first to get 3 in a row wins!
+                  Got a code instead? Enter it to instantly join your friend’s
+                  room.
+                </li>
+                <li>
+                  Place your X or O on the grid , the first to line up 3 in a
+                  row takes the win!
+                </li>
+                <li>
+                  Or try <b>Play with System</b> to face off against a built-in
+                  opponent.
+                </li>
+
+                <li>
+                  The built-in-opponent uses a classic game-theory algorithm and
+                  is designed to play perfectly. Think you can outsmart it? Give
+                  it a try!
                 </li>
               </ul>
             </motion.div>

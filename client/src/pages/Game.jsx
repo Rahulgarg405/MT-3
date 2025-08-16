@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { socket } from "../socket";
 import Board from "../components/Board";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Game() {
   const { code } = useParams();
@@ -15,6 +16,8 @@ export default function Game() {
 
   // New: Track if this player is the creator
   const isCreator = location.state?.isCreator || false;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!socket.connected) {
@@ -43,12 +46,19 @@ export default function Game() {
       toast.success("Opponent wants a rematch!");
     };
 
+    const handleOpponentLeft = () => {
+      toast.error("Opponent left the match");
+      navigate("/play"); //go back to play page
+    };
+
     socket.on("game_update", handleGameUpdate);
     socket.on("opponent_requested_rematch", handleOpponentRematch);
+    socket.on("opponent_left", handleOpponentLeft);
 
     return () => {
       socket.off("game_update", handleGameUpdate);
       socket.off("opponent_requested_rematch", handleOpponentRematch);
+      socket.off("opponent_left", handleOpponentLeft);
     };
   }, [code]);
 
@@ -172,7 +182,7 @@ export default function Game() {
               </p>
 
               <button
-                className={`mt-4 px-5 py-2 rounded-lg shadow-md transition-colors 
+                className={`cursor-pointer mt-4 px-5 py-2 rounded-lg shadow-md transition-colors 
                   ${
                     waitingRematch
                       ? "bg-gray-600 cursor-not-allowed"

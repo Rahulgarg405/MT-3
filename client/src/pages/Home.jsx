@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-4">
       {/* Title */}
-      <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-pink-300 drop-shadow-lg">
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-blue-200 drop-shadow-lg">
         Tic Tac Toe
       </h1>
 

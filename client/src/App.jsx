@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import { Toaster } from "react-hot-toast";
 import LandingPage from "./pages/LandingPage";
+import AiGame from "./pages/AiGame";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/play" element={<Home />} />
+          <Route path="/ai" element={<AiGame />} />
           <Route path="/game/:code" element={<Game />} />
         </Routes>
       </Router>

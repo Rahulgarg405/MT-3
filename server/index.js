@@ -259,7 +259,16 @@ function handleDisconnect(socket) {
     room.updatedAt = now();
     // Clear any pending rematch state so UI doesn't get stuck
     room.rematchRequests.clear();
+
+    // Notify the opponent explicitly
+    socket.to(code).emit("opponent_left");
+
     io.in(code).emit("game_update", publicState(room));
+
+    // If both players have left, clean up the room
+    if (!room.players.X && !room.players.O) {
+      deleteRoom(code);
+    }
   }
 }
 
