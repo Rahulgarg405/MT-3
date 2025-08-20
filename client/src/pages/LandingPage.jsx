@@ -89,7 +89,7 @@ export default function LandingPage() {
         </p>
         <div className="flex justify-center gap-6">
           <a
-            href="https://github.com/your-github-username"
+            href="https://github.com/RahulGarg405"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-emerald-500 transition-colors text-2xl"
@@ -97,7 +97,7 @@ export default function LandingPage() {
             <FaGithub />
           </a>
           <a
-            href="https://www.linkedin.com/in/your-linkedin-username"
+            href="https://www.linkedin.com/in/rahul-garg-210778257"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-600 transition-colors text-2xl"
@@ -105,7 +105,7 @@ export default function LandingPage() {
             <FaLinkedin />
           </a>
           <a
-            href="https://twitter.com/your-twitter-handle"
+            href="https://twitter.com/RahulGarg405"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-500 transition-colors text-2xl"
