@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import http from "http";
 import express from "express";
 import cors from "cors";
@@ -15,7 +17,10 @@ app.get("/health", (req, res) => res.send("ok"));
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "*", methods: ["GET", "POST"] },
+  cors: {
+    origin: process.env.CLIENT_URL || "*",
+    methods: ["GET", "POST"],
+  },
 });
 
 // In-memory rooms (no DB)
