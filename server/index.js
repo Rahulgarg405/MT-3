@@ -79,6 +79,9 @@ io.on("connection", (socket) => {
       socket.data.roomCode = room.code;
       socket.data.symbol = "X";
 
+      // Immediately notify creator to wait for opponent
+      socket.emit("waiting_for_opponent");
+
       if (typeof ack === "function") {
         ack({
           ok: true,
@@ -126,6 +129,11 @@ io.on("connection", (socket) => {
     socket.data.symbol = symbol;
 
     io.in(room.code).emit("game_update", publicState(room));
+
+    // Notify creator that opponent joined
+    if (room.players.X) {
+      io.to(room.players.X).emit("opponent_joined");
+    }
 
     if (typeof ack === "function") {
       ack({ ok: true, code: room.code, symbol, state: publicState(room) });

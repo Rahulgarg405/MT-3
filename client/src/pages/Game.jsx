@@ -51,14 +51,21 @@ export default function Game() {
       navigate("/play"); //go back to play page
     };
 
+    const handleOpponentJoined = () => {
+      toast.success("Opponent joined! Let’s play!");
+    };
+
     socket.on("game_update", handleGameUpdate);
     socket.on("opponent_requested_rematch", handleOpponentRematch);
     socket.on("opponent_left", handleOpponentLeft);
+
+    socket.on("opponent_joined", handleOpponentJoined);
 
     return () => {
       socket.off("game_update", handleGameUpdate);
       socket.off("opponent_requested_rematch", handleOpponentRematch);
       socket.off("opponent_left", handleOpponentLeft);
+      socket.off("opponent_joined", handleOpponentJoined);
     };
   }, [code]);
 
@@ -158,8 +165,12 @@ export default function Game() {
           </p>
 
           {/* Turn Info */}
-          <p className="mb-2 text-lg">
-            {state.turn === symbol ? "Your Turn" : "Opponent's Turn"}
+          <p className="mb-2 text-lg font-semibold text-lime-300">
+            {state.status === "waiting"
+              ? "Waiting for opponent to join..."
+              : state.turn === symbol
+              ? "Your Turn"
+              : "Opponent's Turn"}
           </p>
 
           {/* Board */}

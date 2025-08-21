@@ -14,6 +14,7 @@ export default function Home() {
         navigate(`/game/${res.code}`, {
           state: { ...res, isCreator: true }, // ✅ Mark as creator
         });
+        toast("Waiting for opponent to join...", { position: "top-right" });
       } else {
         toast.error(res.error);
       }
