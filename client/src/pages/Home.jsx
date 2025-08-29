@@ -5,14 +5,15 @@ import toast from "react-hot-toast";
 
 export default function Home() {
   const [code, setCode] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [createGameLoading, setCreateGameLoading] = useState(false);
+  const [joinGameLoading, setJoinGameLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleCreate = () => {
-    setLoading(true);
+    setCreateGameLoading(true);
     socket.connect();
     socket.emit("create_room", (res) => {
-      setLoading(false);
+      setCreateGameLoading(false);
       if (res.ok) {
         navigate(`/game/${res.code}`, {
           state: { ...res, isCreator: true }, // ✅ Mark as creator
@@ -26,8 +27,10 @@ export default function Home() {
 
   const handleJoin = () => {
     if (!code) return;
+    setJoinGameLoading(true);
     socket.connect();
     socket.emit("join_room", { code }, (res) => {
+      setJoinGameLoading(false);
       if (res.ok) {
         navigate(`/game/${res.code}`, {
           state: { ...res, isCreator: false }, // ✅ Mark as joining player
@@ -49,9 +52,9 @@ export default function Home() {
       <button
         className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md text-lg font-semibold transition-transform transform hover:scale-105 cursor-pointer"
         onClick={handleCreate}
-        disabled={loading}
+        disabled={createGameLoading}
       >
-        {loading ? (
+        {createGameLoading ? (
           <span className="flex items-center gap-2">
             <svg
               className="animate-spin h-5 w-5 text-white"
@@ -96,9 +99,9 @@ export default function Home() {
         <button
           className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-semibold transition-transform transform hover:scale-105 cursor-pointer"
           onClick={handleJoin}
-          disabled={loading}
+          disabled={joinGameLoading}
         >
-          {loading ? (
+          {joinGameLoading ? (
             <span className="flex items-center gap-2">
               <svg
                 className="animate-spin h-5 w-5 text-white"
