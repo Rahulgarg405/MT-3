@@ -5,11 +5,14 @@ import toast from "react-hot-toast";
 
 export default function Home() {
   const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleCreate = () => {
+    setLoading(true);
     socket.connect();
     socket.emit("create_room", (res) => {
+      setLoading(false);
       if (res.ok) {
         navigate(`/game/${res.code}`, {
           state: { ...res, isCreator: true }, // ✅ Mark as creator
@@ -46,8 +49,33 @@ export default function Home() {
       <button
         className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md text-lg font-semibold transition-transform transform hover:scale-105 cursor-pointer"
         onClick={handleCreate}
+        disabled={loading}
       >
-        🎮 Create New Game
+        {loading ? (
+          <span className="flex items-center gap-2">
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              />
+            </svg>
+            Creating Room...
+          </span>
+        ) : (
+          "Create a Game"
+        )}
       </button>
 
       {/* OR Divider */}
@@ -68,8 +96,33 @@ export default function Home() {
         <button
           className="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-semibold transition-transform transform hover:scale-105 cursor-pointer"
           onClick={handleJoin}
+          disabled={loading}
         >
-          Join
+          {loading ? (
+            <span className="flex items-center gap-2">
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                />
+              </svg>
+              Joining...
+            </span>
+          ) : (
+            "Join"
+          )}
         </button>
       </div>
     </div>
